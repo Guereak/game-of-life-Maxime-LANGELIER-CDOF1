@@ -1,5 +1,6 @@
 import numpy as np
 import time
+import os
 
 
 def randomGrid(N):
@@ -29,7 +30,9 @@ def update(grid, N):
 
 def display(grid, N):
     """Displays the grid in the console"""
-    print("\033[H", end="") 
+    # Clear the screen before updating the grid
+    os.system('cls' if os.name == 'nt' else 'clear')
+
     for i in range(N):
         for j in range(N):
             print('#' if grid[i, j] == 1 else ' ', end='')
@@ -38,12 +41,13 @@ def display(grid, N):
 
 
 def main():
-    grid = randomGrid(20)
+    N = 20  # Set the grid size
+    grid = randomGrid(N)
 
-    # Run the simulation indefinetly
+    # Run the simulation indefinitely
     while True:
-        display(grid, 20)
-        grid = update(grid, 20)
+        display(grid, N)
+        grid = update(grid, N)
         time.sleep(0.5)
 
 
